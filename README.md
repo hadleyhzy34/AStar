@@ -21,7 +21,7 @@ mkdir build
 cd build
 cmake ..
 make
-./bin/AStar
+./AStar
 ```
 
 ## Result visualization
