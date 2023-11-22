@@ -6,6 +6,16 @@
 #include <unordered_map>
 #include <utility>
 
+std::ostream &operator<<(std::ostream &os,
+                         const std::unordered_map<int, struct Node> &m) {
+  for (auto x : m) {
+    os << x.first << " " << x.second.x << "||" << x.second.y << "||"
+       << x.second.xId << "||" << x.second.yId << "||" << x.second.cost;
+  }
+  os << std::endl;
+  return os;
+}
+
 AStar::AStar(float res, float rad, struct World map)
     : resolution(res), radius(rad), worldMap(map) {
   motionVector = {
@@ -101,11 +111,10 @@ void AStar::plan(float ox, float oy, float gx, float gy) {
   std::unordered_map<int, struct Node> closedSet;
 
   openSet[this->calcGridIndex(startNode)] = startNode;
-  int count = 0;
 
   while (true) {
     if (openSet.empty()) {
-      std::cout << "open set is empty";
+      std::cout << "open set is empty\n";
       break;
     }
 
@@ -119,18 +128,25 @@ void AStar::plan(float ox, float oy, float gx, float gy) {
     int curId = iter->first;
 
     if (curNode.xId == endNode.xId && curNode.yId == endNode.yId) {
-      std::cout << "goal found";
+      std::cout << "goal found\n";
       endNode.parentIdx = curNode.parentIdx;
       endNode.cost = curNode.cost;
       break;
     }
 
-    count++;
-    std::cout << curNode.x << "||" << curNode.y << "||" << curNode.xId << "||"
-              << curNode.yId << "||"
-              << curNode.cost + this->calcHeuristic(curNode, endNode) << "||"
-              << openSet.size() << "||" << closedSet.size() << "||" << count
-              << std::endl;
+    /* std::cout << openSet; */
+    /* std::cout << openSet; */
+    /* std::cout << closedSet; */
+
+    /* count++; */
+    /* std::cout << curNode.x << "||" << curNode.y << "||" << curNode.xId <<
+     * "||" */
+    /*           << curNode.yId << "||" */
+    /*           << curNode.cost + this->calcHeuristic(curNode, endNode) << "||"
+     */
+    /*           << openSet.size() << "||" << closedSet.size() << "||" << count
+     */
+    /*           << std::endl; */
 
     openSet.erase(curId);
     closedSet[curId] = curNode;
@@ -186,19 +202,8 @@ void AStar::printPath() {
   if (this->path.empty()) {
     return;
   }
+
   for (auto p : this->path) {
     std::cout << p.first << " " << p.second << std::endl;
   }
 }
-
-/* std::ostream &operator<<(std::ostream &os, */
-/*                          const std::unordered_map<int, struct Node> &map) {
- */
-/*   for (auto x : map) { */
-/*     os << x.first << " " << x.second.x << "||" << x.second.y << "||" */
-/*        << x.second.xId << "||" << x.second.yId << "||" << x.second.cost << "
- * "; */
-/*   } */
-/*   os << std::endl; */
-/*   return os; */
-/* } */

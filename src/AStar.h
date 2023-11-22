@@ -46,18 +46,7 @@ public:
   /* friend std::ostream &operator<<(const std::ostream, */
   /*                                 const std::unordered_map<int, struct
    * Node>); */
-
-  friend std::ostream &
-  operator<<(std::ostream &os,
-             const std::unordered_map<int, struct Node> &map) {
-    for (auto x : map) {
-      os << x.first << " " << x.second.x << "||" << x.second.y << "||"
-         << x.second.xId << "||" << x.second.yId << "||" << x.second.cost
-         << " ";
-    }
-    os << std::endl;
-    return os;
-  }
+  friend std::ostream &operator<<(std::ostream &os, const struct Node &m);
 
 private:
 };
