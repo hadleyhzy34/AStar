@@ -12,3 +12,7 @@ cmake ..
 make
 ./bin/AStar
 ```
+
+## Result visualization
+
+![result](https://github.com/hadleyhzy34/AStar/blob/main/demo.png)
