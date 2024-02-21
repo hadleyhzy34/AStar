@@ -1,27 +1,31 @@
 # AStar
+
 a* path planning algorithm implementation and visualization based on C++ and matplotlib
 
 ## Installation
 
-1.Conda Environment Setup
-```
+* Conda Environment Setup
+
+```console
 conda create -n [project_name] python=3.9
 conda activate [project_name]
 pip install matplotlib
 ```
 
-2.Download Project
-```c++
+* Download Project
+
+```console
 git clone https://github.com/hadleyhzy34/AStar.git
 cd AStar
 ```
 
-3.Modify `CMakeLists.txt` file
+* Modify `CMakeLists.txt` file
 
- go to file `CMakeLists.txt` and change `Python3_ROOT_DIR` to your own conda env folder.
+go to file `CMakeLists.txt` and change `Python3_ROOT_DIR` to your own conda env folder.
 
-4.Build project
-```
+* Build project
+
+```console
 mkdir build
 cd build
 cmake ..
